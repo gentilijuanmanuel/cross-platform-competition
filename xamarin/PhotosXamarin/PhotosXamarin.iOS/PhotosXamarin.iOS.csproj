@@ -110,6 +110,14 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\camera_white.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\camera_white.imageset\baseline_photo_camera_white_24pt_1x.png" />
+    <ImageAsset Include="Assets.xcassets\camera_white.imageset\baseline_photo_camera_white_24pt_2x.png" />
+    <ImageAsset Include="Assets.xcassets\camera_white.imageset\baseline_photo_camera_white_24pt_3x.png" />
+    <ImageAsset Include="Assets.xcassets\favorite_white.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\favorite_white.imageset\baseline_favorite_white_24pt_1x.png" />
+    <ImageAsset Include="Assets.xcassets\favorite_white.imageset\baseline_favorite_white_24pt_2x.png" />
+    <ImageAsset Include="Assets.xcassets\favorite_white.imageset\baseline_favorite_white_24pt_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -129,5 +137,11 @@
       <Project>{8CD613F6-BC82-4E63-8579-2AF9C65AC563}</Project>
       <Name>PhotosXamarin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\camera_white.imageset\" />
+    <Folder Include="Assets.xcassets\camera_white.imageset\" />
+    <Folder Include="Assets.xcassets\camera_white.imageset\" />
+    <Folder Include="Assets.xcassets\favorite_white.imageset\" />
   </ItemGroup>
 </Project>
