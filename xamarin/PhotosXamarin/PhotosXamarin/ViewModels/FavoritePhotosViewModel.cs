@@ -3,11 +3,11 @@ using PhotosXamarin.Services;
 
 namespace PhotosXamarin.ViewModels
 {
-    public class PhotosViewModel : BaseViewModel
+    public class FavoritePhotosViewModel : BaseViewModel
     {
         private readonly IPhotosService photosService;
 
-        public PhotosViewModel()
+        public FavoritePhotosViewModel()
         {
             this.photosService = new PhotosService();
         }

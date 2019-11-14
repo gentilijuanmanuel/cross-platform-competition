@@ -5,10 +5,18 @@ namespace PhotosXamarin.Views
 {
     public partial class PhotosView : ContentPage
     {
+        private readonly PhotosViewModel photosViewModel;
+
         public PhotosView()
         {
             InitializeComponent();
-            this.BindingContext = new PhotosViewModel();
+            this.BindingContext = this.photosViewModel = new PhotosViewModel();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await this.photosViewModel.OnAppearing();
         }
     }
 }

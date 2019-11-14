@@ -5,10 +5,18 @@ namespace PhotosXamarin.Views
 {
     public partial class FavoritePhotosView : ContentPage
     {
+        private readonly FavoritePhotosViewModel favoritePhotosViewModel;
+
         public FavoritePhotosView()
         {
             InitializeComponent();
-            this.BindingContext = new FavouritePhotosViewModel();
+            this.BindingContext = this.favoritePhotosViewModel = new FavoritePhotosViewModel();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await this.favoritePhotosViewModel.OnAppearing();
         }
     }
 }
