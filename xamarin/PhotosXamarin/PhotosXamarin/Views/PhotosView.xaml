@@ -5,10 +5,21 @@
     x:Class="PhotosXamarin.Views.PhotosView">
     <ContentPage.Content>
         <StackLayout>
-            <Label
-                Text="Photos page!"
-                HorizontalOptions="Center"
-                VerticalOptions="CenterAndExpand" />
+            <ActivityIndicator
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                IsRunning="{Binding Loading}" />
+            <ListView
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                IsVisible="{Binding Loading, Converter={StaticResource InvertedBoolConverter}}"
+                ItemsSource="{Binding Photos}">
+                <ListView.ItemTemplate>
+                  <DataTemplate>
+                    <TextCell Text="{Binding Description}" />
+                  </DataTemplate>
+                </ListView.ItemTemplate>
+             </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
