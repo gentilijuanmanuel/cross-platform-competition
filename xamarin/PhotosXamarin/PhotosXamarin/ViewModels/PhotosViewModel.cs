@@ -54,12 +54,22 @@ namespace PhotosXamarin.ViewModels
 
         private async Task GetPhotosAsync()
         {
-            this.Photos = new ObservableCollection<Photo>();
-            Loading = true;
-            var result = await this.photosService.GetPhotosAsync();
-            foreach (var photo in result)
-                Photos.Add(photo);
-            Loading = false;
+            try
+            {
+                this.Photos = new ObservableCollection<Photo>();
+                Loading = true;
+                var result = await this.photosService.GetPhotosAsync();
+                foreach (var photo in result)
+                    Photos.Add(photo);
+            }
+            catch (System.Exception ex)
+            {
+                System.Console.WriteLine(ex);
+            }
+            finally
+            {
+                Loading = false;
+            }
         }
 
         #endregion Private methods

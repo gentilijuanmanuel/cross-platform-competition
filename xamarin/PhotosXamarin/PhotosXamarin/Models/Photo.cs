@@ -12,5 +12,8 @@ namespace PhotosXamarin.Models
 
         [JsonProperty("alt_description")]
         public string AltDescription { get; set; }
+
+        [JsonProperty("urls")]
+        public Url Urls { get; set; }
     }
 }

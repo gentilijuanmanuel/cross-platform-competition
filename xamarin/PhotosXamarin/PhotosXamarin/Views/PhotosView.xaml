@@ -6,20 +6,28 @@
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
                 IsRunning="{Binding Loading}" />
-            <ListView
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
+            <CollectionView
                 IsVisible="{Binding Loading, Converter={StaticResource InvertedBoolConverter}}"
                 ItemsSource="{Binding Photos}">
-                <ListView.ItemTemplate>
-                  <DataTemplate>
-                    <TextCell Text="{Binding Description}" />
-                  </DataTemplate>
-                </ListView.ItemTemplate>
-             </ListView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Image
+                                HeightRequest="200"
+                                WidthRequest="200"
+                                Source="{Binding Urls.Regular}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
