@@ -2,14 +2,19 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="PhotosXamarin.Views.PhotosView">
+    x:Class="PhotosXamarin.Views.PhotosView"
+    BackgroundColor="#303030">
     <ContentPage.Content>
         <RefreshView
+            RefreshColor="WhiteSmoke"
+            Padding="5"
+            BackgroundColor="#303030"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             IsRefreshing="{Binding Loading}"
             Command="{Binding RefreshCommand}">
             <CollectionView
+                BackgroundColor="#303030"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 ItemsSource="{Binding Photos}">
@@ -20,11 +25,13 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10">
-                            <Image
-                                HeightRequest="200"
-                                WidthRequest="200"
-                                Source="{Binding Urls.Regular}" />
+                        <StackLayout Padding="40">
+                            <Frame
+                                CornerRadius="20" 
+                                Padding="0"
+                                IsClippedToBounds="True">
+                                <Image Source="{Binding Urls.Regular}" />
+                            </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
