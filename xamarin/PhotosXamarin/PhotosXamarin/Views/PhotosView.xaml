@@ -4,13 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PhotosXamarin.Views.PhotosView">
     <ContentPage.Content>
-        <StackLayout>
-            <ActivityIndicator
-                HorizontalOptions="Center"
-                VerticalOptions="CenterAndExpand"
-                IsRunning="{Binding Loading}" />
+        <RefreshView
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsRefreshing="{Binding Loading}"
+            Command="{Binding RefreshCommand}">
             <CollectionView
-                IsVisible="{Binding Loading, Converter={StaticResource InvertedBoolConverter}}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
                 ItemsSource="{Binding Photos}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
@@ -28,6 +29,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 </CollectionView>
-        </StackLayout>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

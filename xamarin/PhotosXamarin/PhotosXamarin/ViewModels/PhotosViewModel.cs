@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using PhotosXamarin.Models;
 using PhotosXamarin.Services;
+using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
 {
@@ -37,6 +39,8 @@ namespace PhotosXamarin.ViewModels
             }
         }
 
+        public ICommand RefreshCommand { get; set; }
+
         #endregion Public properties
 
         #region ViewModel life-cycle
@@ -44,9 +48,10 @@ namespace PhotosXamarin.ViewModels
         public PhotosViewModel()
         {
             this.photosService = new PhotosService();
+            this.RefreshCommand = new Command(async () => await this.GetPhotosAsync());
         }
 
-        public async Task OnAppearing() => await GetPhotosAsync();
+        public override async Task OnAppearing() => await GetPhotosAsync();
 
         #endregion ViewModel life-cycle
 
