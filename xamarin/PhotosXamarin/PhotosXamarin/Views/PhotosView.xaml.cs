@@ -11,6 +11,7 @@ namespace PhotosXamarin.Views
         {
             InitializeComponent();
             this.BindingContext = this.photosViewModel = new PhotosViewModel();
+            this.photosViewModel.Navigation = this.Navigation;
         }
 
         protected override async void OnAppearing()

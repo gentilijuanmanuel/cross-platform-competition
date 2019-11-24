@@ -39,7 +39,19 @@ namespace PhotosXamarin.ViewModels
             }
         }
 
+        Photo selectedPhoto;
+        public Photo SelectedPhoto
+        {
+            get => selectedPhoto;
+            set
+            {
+                selectedPhoto = value;
+                OnPropertyChanged(nameof(SelectedPhoto));
+            }
+        }
+
         public ICommand RefreshCommand { get; set; }
+        public ICommand ShowPhotoDetailCommand { get; set; }
 
         #endregion Public properties
 
@@ -49,6 +61,7 @@ namespace PhotosXamarin.ViewModels
         {
             this.photosService = new PhotosService();
             this.RefreshCommand = new Command(async () => await this.GetPhotosAsync());
+            this.ShowPhotoDetailCommand = new Command(async () => await this.ShowPhotoDetailAsync());
         }
 
         public override async Task OnAppearing() => await GetPhotosAsync();
@@ -76,6 +89,8 @@ namespace PhotosXamarin.ViewModels
                 Loading = false;
             }
         }
+
+        private async Task ShowPhotoDetailAsync() => await this.Navigation.PushModalAsync(new NavigationPage(new Views.PhotoDetailView(SelectedPhoto)));
 
         #endregion Private methods
     }

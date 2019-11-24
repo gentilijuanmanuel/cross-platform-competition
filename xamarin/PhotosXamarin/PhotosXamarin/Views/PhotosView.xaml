@@ -17,6 +17,9 @@
                 BackgroundColor="#303030"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedPhoto}"
+                SelectionChangedCommand="{Binding ShowPhotoDetailCommand}"
                 ItemsSource="{Binding Photos}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout

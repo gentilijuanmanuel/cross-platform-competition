@@ -11,6 +11,7 @@ namespace PhotosXamarin.Views
         {
             InitializeComponent();
             this.BindingContext = this.favoritePhotosViewModel = new FavoritePhotosViewModel();
+            this.favoritePhotosViewModel.Navigation = this.Navigation;
         }
 
         protected override async void OnAppearing()
