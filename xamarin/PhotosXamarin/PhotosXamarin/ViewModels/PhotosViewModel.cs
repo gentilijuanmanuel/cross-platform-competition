@@ -90,7 +90,13 @@ namespace PhotosXamarin.ViewModels
             }
         }
 
-        private async Task ShowPhotoDetailAsync() => await this.Navigation.PushModalAsync(new NavigationPage(new Views.PhotoDetailView(SelectedPhoto)));
+        private async Task ShowPhotoDetailAsync()
+        {
+            var navigationPage = new NavigationPage(new Views.PhotoDetailView(SelectedPhoto));
+            navigationPage.BarBackgroundColor = Color.FromHex("#2A2A2A");
+            navigationPage.BarTextColor = Color.FromHex("#FFFFFF");
+            await this.Navigation.PushModalAsync(navigationPage);
+        }
 
         #endregion Private methods
     }

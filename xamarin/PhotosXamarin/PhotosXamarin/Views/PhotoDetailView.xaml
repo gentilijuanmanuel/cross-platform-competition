@@ -2,16 +2,35 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#2A2A2A"
+    Title="{Binding SelectedPhoto.User.FirstName}"
     x:Class="PhotosXamarin.Views.PhotoDetailView">
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Close"
-            Command="{Binding ClosePhotoDetailCommand}"/>
+            Command="{Binding ClosePhotoDetailCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Label
-            VerticalOptions="CenterAndExpand"
-            HorizontalOptions="Center"
-            Text="{Binding SelectedPhoto.AltDescription}" />
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="#303030">
+            <StackLayout
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="Center"
+                Padding="40">
+                <Frame
+                    CornerRadius="20" 
+                    Padding="0"
+                    IsClippedToBounds="True">
+                    <Image Source="{Binding SelectedPhoto.Urls.Regular}" />
+                </Frame>
+            </StackLayout>
+            <Label
+                VerticalOptions="Start"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="White"
+                Text="{Binding SelectedPhoto.Likes, Converter={StaticResource LikesConverter}}" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

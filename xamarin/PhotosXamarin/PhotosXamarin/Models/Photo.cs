@@ -15,5 +15,11 @@ namespace PhotosXamarin.Models
 
         [JsonProperty("urls")]
         public Url Urls { get; set; }
+
+        [JsonProperty("user")]
+        public User User { get; set; }
+
+        [JsonProperty("likes")]
+        public int Likes { get; set; }
     }
 }
