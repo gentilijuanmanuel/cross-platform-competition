@@ -5,5 +5,4 @@
     xmlns:converters="clr-namespace:PhotosXamarin.Converters"
     x:Class="PhotosXamarin.Resources.Converters">
     <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
-    <converters:LikesConverter x:Key="LikesConverter" />
 </ResourceDictionary>

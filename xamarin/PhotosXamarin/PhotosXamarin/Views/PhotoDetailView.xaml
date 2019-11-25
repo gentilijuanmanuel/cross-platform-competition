@@ -15,22 +15,56 @@
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             BackgroundColor="#303030">
-            <StackLayout
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="Center"
+            <Grid
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
                 Padding="40">
-                <Frame
-                    CornerRadius="20" 
-                    Padding="0"
-                    IsClippedToBounds="True">
-                    <Image Source="{Binding SelectedPhoto.Urls.Regular}" />
-                </Frame>
-            </StackLayout>
-            <Label
-                VerticalOptions="Start"
-                HorizontalOptions="CenterAndExpand"
-                TextColor="White"
-                Text="{Binding SelectedPhoto.Likes, Converter={StaticResource LikesConverter}}" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout
+                    Grid.ColumnSpan="2">
+                    <Frame
+                        Grid.ColumnSpan="2"
+                        CornerRadius="20"
+                        Padding="0"
+                        IsClippedToBounds="True">
+                        <Image Source="{Binding SelectedPhoto.Urls.Regular}" />
+                    </Frame>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="20">
+                    <Label
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        FontSize="15"
+                        TextColor="White"
+                        Text="{Binding SelectedPhoto.Likes}" />
+                    <Image
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        HeightRequest="17"
+                        WidthRequest="17"
+                        Source="favorite_white" />
+                </StackLayout>
+                <ImageButton
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20"
+                    VerticalOptions="Start"
+                    HorizontalOptions="End"
+                    HeightRequest="17"
+                    WidthRequest="17"
+                    Source="bookmark_white"
+                    Command="{Binding AddPhotoToFavoriteCommand}" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
