@@ -38,7 +38,7 @@ namespace PhotosXamarin.Rest
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception();
+                        throw ex;
                     }
 
                     var stringSerialized = await response.Content.ReadAsStringAsync().ConfigureAwait(false);

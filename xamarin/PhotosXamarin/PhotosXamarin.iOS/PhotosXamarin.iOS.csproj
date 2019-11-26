@@ -116,6 +116,12 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.0.35</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -130,5 +136,8 @@
     <Folder Include="Assets.xcassets\camera_white.imageset\" />
     <Folder Include="Assets.xcassets\favorite_white.imageset\" />
     <Folder Include="Assets.xcassets\bookmark_white.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\image_placeholder.jpg" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     BackgroundColor="#2A2A2A"
     Title="{Binding SelectedPhoto.User.FirstName}"
     x:Class="PhotosXamarin.Views.PhotoDetailView">
@@ -34,7 +35,10 @@
                         CornerRadius="20"
                         Padding="0"
                         IsClippedToBounds="True">
-                        <Image Source="{Binding SelectedPhoto.Urls.Regular}" />
+                        <ffimageloading:CachedImage
+                            LoadingPlaceholder="image_placeholder.jpg"
+			                Source="{Binding SelectedPhoto.Urls.Regular}">
+		                </ffimageloading:CachedImage>
                     </Frame>
                 </StackLayout>
                 <StackLayout
