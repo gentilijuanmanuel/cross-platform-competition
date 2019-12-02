@@ -21,7 +21,6 @@
                 SelectionMode="Single"
                 SelectedItem="{Binding SelectedPhoto}"
                 SelectionChangedCommand="{Binding ShowPhotoDetailCommand}"
-                IsVisible="{Binding Loading, Converter={StaticResource InvertedBoolConverter}}"
                 ItemsSource="{Binding Photos}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout

@@ -12,6 +12,7 @@ namespace PhotosXamarin.ViewModels
         #region Private properties
 
         private readonly IPhotosService photosService;
+        public bool initializedScreen;
 
         #endregion Private properties
 
@@ -65,7 +66,14 @@ namespace PhotosXamarin.ViewModels
             this.ShowPhotoDetailCommand = new Command(async () => await this.ShowPhotoDetailAsync());
         }
 
-        public async Task OnAppearing() => await GetFavoritePhotosAsync();
+        public async Task OnAppearing()
+        {
+            if (!initializedScreen)
+            {
+                await GetFavoritePhotosAsync();
+                initializedScreen = true;
+            }
+        }
 
         #endregion ViewModel life-cycle
 
@@ -75,8 +83,8 @@ namespace PhotosXamarin.ViewModels
         {
             try
             {
-                FavoritePhotos.Clear();
                 Loading = true;
+                FavoritePhotos.Clear();
                 var result = await this.photosService.GetFavoritePhotosLocalAsync();
                 foreach (var photo in result)
                     FavoritePhotos.Add(photo);
