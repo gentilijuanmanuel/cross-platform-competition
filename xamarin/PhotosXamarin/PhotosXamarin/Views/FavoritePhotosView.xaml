@@ -21,7 +21,7 @@
                 SelectionMode="Single"
                 SelectedItem="{Binding SelectedPhoto}"
                 SelectionChangedCommand="{Binding ShowPhotoDetailCommand}"
-                ItemsSource="{Binding FavoritePhotos}">
+                ItemsSource="{Binding Photos}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
                         Orientation="Vertical"
