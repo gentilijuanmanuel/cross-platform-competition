@@ -8,6 +8,8 @@ namespace PhotosXamarin.Services
     {
         Task<IEnumerable<Photo>> GetPhotosAsync(string url = null);
 
-        Task<IEnumerable<Photo>> GetFavoritePhotosAsync(string url = null);
+        Task<List<Photo>> GetFavoritePhotosLocalAsync();
+
+        Task SaveFavoritePhotoLocalAsync(Photo photo);
     }
 }

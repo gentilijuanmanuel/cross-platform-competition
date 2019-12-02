@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     BackgroundColor="#2A2A2A"
-    Title="{Binding SelectedPhoto.User.FirstName}"
+    Title="{Binding SelectedPhoto.UserFirstName}"
     x:Class="PhotosXamarin.Views.PhotoDetailView">
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -37,7 +37,7 @@
                         IsClippedToBounds="True">
                         <ffimageloading:CachedImage
                             LoadingPlaceholder="image_placeholder.jpg"
-			                Source="{Binding SelectedPhoto.Urls.Regular}">
+			                Source="{Binding SelectedPhoto.Path}">
 		                </ffimageloading:CachedImage>
                     </Frame>
                 </StackLayout>

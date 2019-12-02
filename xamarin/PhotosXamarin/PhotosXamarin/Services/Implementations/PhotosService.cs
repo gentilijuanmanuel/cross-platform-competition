@@ -20,13 +20,25 @@ namespace PhotosXamarin.Services
 
         public Task<IEnumerable<Photo>> GetPhotosAsync(string url = null)
         {
-            return this.restClient.MakeApiCall<IEnumerable<Photo>>($"{Constants.BASE_URL}{URL_SUFFIX}", HttpMethod.Get);
+            var photosTask = this.restClient.MakeApiCall<IEnumerable<Photo>>($"{Constants.BASE_URL}{URL_SUFFIX}", HttpMethod.Get);
+
+            foreach (var photo in photosTask.Result)
+            {
+                photo.UserFirstName = photo.User.FirstName;
+                photo.Path = photo.Urls.Regular;
+            }
+
+            return photosTask;
         }
 
-        public Task<IEnumerable<Photo>> GetFavoritePhotosAsync(string url = null)
+        public async Task<List<Photo>> GetFavoritePhotosLocalAsync()
         {
-            // TODO: Get local favorite photos
-            return null;
+            return await App.Database.GetFavoritePhotosAsync();
+        }
+
+        public async Task SaveFavoritePhotoLocalAsync(Photo photo)
+        {
+            await App.Database.SaveFavoritePhotoAsync(photo);
         }
     }
 }

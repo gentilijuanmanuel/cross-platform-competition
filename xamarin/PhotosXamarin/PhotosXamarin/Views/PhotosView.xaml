@@ -3,8 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    x:Class="PhotosXamarin.Views.PhotosView"
-    BackgroundColor="#303030">
+    BackgroundColor="#303030"
+    x:Class="PhotosXamarin.Views.PhotosView">
     <ContentPage.Content>
         <RefreshView
             RefreshColor="WhiteSmoke"
@@ -21,6 +21,7 @@
                 SelectionMode="Single"
                 SelectedItem="{Binding SelectedPhoto}"
                 SelectionChangedCommand="{Binding ShowPhotoDetailCommand}"
+                IsVisible="{Binding Loading, Converter={StaticResource InvertedBoolConverter}}"
                 ItemsSource="{Binding Photos}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
@@ -36,7 +37,7 @@
                                 IsClippedToBounds="True">
                                 <ffimageloading:CachedImage
                                     LoadingPlaceholder="image-placeholder.jpg"
-			                        Source="{Binding Urls.Regular}">
+			                        Source="{Binding Path}">
 		                        </ffimageloading:CachedImage>
                             </Frame>
                         </StackLayout>

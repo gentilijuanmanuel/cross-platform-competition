@@ -2,12 +2,19 @@
 using System.Windows.Input;
 using Acr.UserDialogs;
 using PhotosXamarin.Models;
+using PhotosXamarin.Services;
 using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
 {
     public class PhotoDetailViewModel : BaseViewModel
     {
+        #region Private properties
+
+        private readonly IPhotosService photosService;
+
+        #endregion
+
         #region Public properties
 
         Photo selectedPhoto;
@@ -30,6 +37,8 @@ namespace PhotosXamarin.ViewModels
 
         public PhotoDetailViewModel()
         {
+            this.photosService = new PhotosService();
+
             this.ClosePhotoDetailCommand = new Command(async () => await this.Navigation.PopModalAsync());
             this.AddPhotoToFavoriteCommand = new Command(async () => await this.SavePhotoToFavorites());
         }
@@ -40,8 +49,16 @@ namespace PhotosXamarin.ViewModels
 
         private async Task SavePhotoToFavorites()
         {
-            UserDialogs.Instance.Toast("Saved to favourites!");
-            await this.Navigation.PopModalAsync();
+            try
+            {
+                await this.photosService.SaveFavoritePhotoLocalAsync(SelectedPhoto);
+                UserDialogs.Instance.Toast("Saved to favourites!");
+                await this.Navigation.PopModalAsync();
+            }
+            catch (System.Exception ex)
+            {
+                UserDialogs.Instance.Toast("Cannot save photo. Please try again.");
+            }
         }
 
         #endregion Private methods

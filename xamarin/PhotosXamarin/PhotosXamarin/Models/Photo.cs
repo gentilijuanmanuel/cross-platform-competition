@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+using SQLite;
 
 namespace PhotosXamarin.Models
 {
     public class Photo
     {
         [JsonProperty("id")]
+        [PrimaryKey]
         public string Id { get; set; }
 
         [JsonProperty("description")]
@@ -14,12 +16,22 @@ namespace PhotosXamarin.Models
         public string AltDescription { get; set; }
 
         [JsonProperty("urls")]
+        [Ignore]
         public Url Urls { get; set; }
 
         [JsonProperty("user")]
+        [Ignore]
         public User User { get; set; }
 
-        [JsonProperty("likes")]
+        [JsonProperty("likes")]        
         public int Likes { get; set; }
+
+        // Local db properties
+
+        [JsonIgnore]
+        public string Path { get; set; }
+
+        [JsonIgnore]
+        public string UserFirstName { get; set; }
     }
 }

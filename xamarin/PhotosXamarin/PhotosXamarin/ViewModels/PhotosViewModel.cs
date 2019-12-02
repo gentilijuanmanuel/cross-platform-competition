@@ -17,7 +17,7 @@ namespace PhotosXamarin.ViewModels
 
         #region Public properties
 
-        private ObservableCollection<Photo> photos;
+        private ObservableCollection<Photo> photos = new ObservableCollection<Photo>();
         public ObservableCollection<Photo> Photos
         {
             get => photos;
@@ -60,6 +60,7 @@ namespace PhotosXamarin.ViewModels
         public PhotosViewModel()
         {
             this.photosService = new PhotosService();
+
             this.RefreshCommand = new Command(async () => await this.GetPhotosAsync());
             this.ShowPhotoDetailCommand = new Command(async () => await this.ShowPhotoDetailAsync());
         }
@@ -74,7 +75,7 @@ namespace PhotosXamarin.ViewModels
         {
             try
             {
-                this.Photos = new ObservableCollection<Photo>();
+                Photos.Clear();
                 Loading = true;
                 var result = await this.photosService.GetPhotosAsync();
                 foreach (var photo in result)
