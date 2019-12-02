@@ -14,14 +14,7 @@ namespace PhotosXamarin.ViewModels
             this.ShowPhotoDetailCommand = new Command(async () => await this.ShowPhotoDetailAsync());
         }
 
-        public async Task OnAppearing()
-        {
-            if (!initializedScreen)
-            {
-                await GetFavoritePhotosAsync();
-                initializedScreen = true;
-            }
-        }
+        public async Task OnAppearing() => await GetFavoritePhotosAsync();
 
         #endregion ViewModel life-cycle
 
@@ -32,10 +25,13 @@ namespace PhotosXamarin.ViewModels
             try
             {
                 Loading = true;
-                Photos.Clear();
                 var result = await this.photosService.GetFavoritePhotosLocalAsync();
-                foreach (var photo in result)
-                    Photos.Add(photo);
+                lock (Photos)
+                {
+                    Photos.Clear();
+                    foreach (var photo in result)
+                        Photos.Add(photo);
+                }
             }
             catch (System.Exception ex)
             {
@@ -49,7 +45,7 @@ namespace PhotosXamarin.ViewModels
 
         private async Task ShowPhotoDetailAsync()
         {
-            var navigationPage = new NavigationPage(new Views.PhotoDetailView(SelectedPhoto));
+            var navigationPage = new NavigationPage(new Views.PhotoDetailView(SelectedPhoto, true));
             navigationPage.BarBackgroundColor = Color.FromHex("#2A2A2A");
             navigationPage.BarTextColor = Color.FromHex("#FFFFFF");
             await this.Navigation.PushModalAsync(navigationPage);

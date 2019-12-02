@@ -11,5 +11,7 @@ namespace PhotosXamarin.Services
         Task<List<Photo>> GetFavoritePhotosLocalAsync();
 
         Task SaveFavoritePhotoLocalAsync(Photo photo);
+
+        Task DeleteFavoritePhotoLocalAsync(Photo photo);
     }
 }

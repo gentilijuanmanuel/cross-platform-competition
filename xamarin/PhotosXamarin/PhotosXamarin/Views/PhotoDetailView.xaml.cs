@@ -8,11 +8,12 @@ namespace PhotosXamarin.Views
     {
         private readonly PhotoDetailViewModel photoDetailViewModel;
 
-        public PhotoDetailView(Photo selectedPhoto)
+        public PhotoDetailView(Photo selectedPhoto, bool isFavoritePhoto)
         {
             InitializeComponent();
             this.BindingContext = this.photoDetailViewModel = new PhotoDetailViewModel();
             this.photoDetailViewModel.SelectedPhoto = selectedPhoto;
+            this.photoDetailViewModel.IsFavoritePhoto = isFavoritePhoto;
             this.photoDetailViewModel.Navigation = this.Navigation;
         }
     }

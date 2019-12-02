@@ -14,14 +14,7 @@ namespace PhotosXamarin.ViewModels
             this.ShowPhotoDetailCommand = new Command(async () => await this.ShowPhotoDetailAsync());
         }
 
-        public override async Task OnAppearing()
-        {
-            if (!initializedScreen)
-            {
-                await GetPhotosAsync();
-                initializedScreen = true;
-            }
-        }
+        public override async Task OnAppearing() => await GetPhotosAsync();
 
         #endregion ViewModel life-cycle
 
@@ -49,7 +42,7 @@ namespace PhotosXamarin.ViewModels
 
         private async Task ShowPhotoDetailAsync()
         {
-            var navigationPage = new NavigationPage(new Views.PhotoDetailView(SelectedPhoto));
+            var navigationPage = new NavigationPage(new Views.PhotoDetailView(SelectedPhoto, false));
             navigationPage.BarBackgroundColor = Color.FromHex("#2A2A2A");
             navigationPage.BarTextColor = Color.FromHex("#FFFFFF");
             await this.Navigation.PushModalAsync(navigationPage);

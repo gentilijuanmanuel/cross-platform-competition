@@ -10,7 +10,6 @@ namespace PhotosXamarin.ViewModels
         #region Private properties
 
         public readonly IPhotosService photosService;
-        public bool initializedScreen;
 
         #endregion
 

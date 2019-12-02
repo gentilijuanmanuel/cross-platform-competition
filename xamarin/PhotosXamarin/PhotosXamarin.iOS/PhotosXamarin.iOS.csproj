@@ -101,6 +101,10 @@
     <ImageAsset Include="Assets.xcassets\bookmark_white.imageset\baseline_bookmark_white_18pt_1x.png" />
     <ImageAsset Include="Assets.xcassets\bookmark_white.imageset\baseline_bookmark_white_18pt_2x.png" />
     <ImageAsset Include="Assets.xcassets\bookmark_white.imageset\baseline_bookmark_white_18pt_3x.png" />
+    <ImageAsset Include="Assets.xcassets\delete_white.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\delete_white.imageset\baseline_delete_white_18pt_1x.png" />
+    <ImageAsset Include="Assets.xcassets\delete_white.imageset\baseline_delete_white_18pt_2x.png" />
+    <ImageAsset Include="Assets.xcassets\delete_white.imageset\baseline_delete_white_18pt_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -136,6 +140,7 @@
     <Folder Include="Assets.xcassets\camera_white.imageset\" />
     <Folder Include="Assets.xcassets\favorite_white.imageset\" />
     <Folder Include="Assets.xcassets\bookmark_white.imageset\" />
+    <Folder Include="Assets.xcassets\delete_white.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\image_placeholder.jpg" />

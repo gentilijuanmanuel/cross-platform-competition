@@ -30,5 +30,10 @@ namespace PhotosXamarin.Database
 
             return await database.InsertAsync(photo);
         }
+
+        public async Task<int> DeleteFavoritePhotoAsync(Photo photo)
+        {
+            return await database.DeleteAsync(photo);
+        }
     }
 }

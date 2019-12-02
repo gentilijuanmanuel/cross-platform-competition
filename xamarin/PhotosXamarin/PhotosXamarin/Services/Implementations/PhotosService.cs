@@ -40,5 +40,10 @@ namespace PhotosXamarin.Services
         {
             await App.Database.SaveFavoritePhotoAsync(photo);
         }
+
+        public async Task DeleteFavoritePhotoLocalAsync(Photo photo)
+        {
+            await App.Database.DeleteFavoritePhotoAsync(photo);
+        }
     }
 }

@@ -28,8 +28,20 @@ namespace PhotosXamarin.ViewModels
             }
         }
 
-        public ICommand ClosePhotoDetailCommand { get; set; }
-        public ICommand AddPhotoToFavoriteCommand { get; set; }
+        bool isFavoritePhoto;
+        public bool IsFavoritePhoto
+        {
+            get => isFavoritePhoto;
+            set
+            {
+                isFavoritePhoto = value;
+                OnPropertyChanged(nameof(IsFavoritePhoto));
+            }
+        }
+
+        public ICommand ClosePhotoDetailCommand { get; private set; }
+        public ICommand AddPhotoToFavoriteCommand { get; private set; }
+        public ICommand RemoveFavoritePhotoCommand { get; private set; }
 
         #endregion Public properties
 
@@ -41,6 +53,7 @@ namespace PhotosXamarin.ViewModels
 
             this.ClosePhotoDetailCommand = new Command(async () => await this.Navigation.PopModalAsync());
             this.AddPhotoToFavoriteCommand = new Command(async () => await this.SavePhotoToFavorites());
+            this.RemoveFavoritePhotoCommand = new Command(async () => await this.RemoveFavoritePhoto());
         }
 
         #endregion ViewModel life-cycle
@@ -52,12 +65,26 @@ namespace PhotosXamarin.ViewModels
             try
             {
                 await this.photosService.SaveFavoritePhotoLocalAsync(SelectedPhoto);
-                UserDialogs.Instance.Toast("Saved to favourites!");
+                UserDialogs.Instance.Toast("Saved to favorites!");
                 await this.Navigation.PopModalAsync();
             }
             catch (System.Exception ex)
             {
                 UserDialogs.Instance.Toast("Cannot save photo. Please try again.");
+            }
+        }
+
+        private async Task RemoveFavoritePhoto()
+        {
+            try
+            {
+                await this.photosService.DeleteFavoritePhotoLocalAsync(SelectedPhoto);
+                UserDialogs.Instance.Toast("Deleted photo!");
+                await this.Navigation.PopModalAsync();
+            }
+            catch (System.Exception ex)
+            {
+                UserDialogs.Instance.Toast("Cannot delete favorite photo. Please try again.");
             }
         }
 
