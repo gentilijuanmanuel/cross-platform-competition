@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Acr.UserDialogs;
+using MvvmHelpers.Commands;
 using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
@@ -10,8 +11,8 @@ namespace PhotosXamarin.ViewModels
 
         public FavoritePhotosViewModel()
         {
-            this.RefreshCommand = new Command(async () => await this.GetFavoritePhotosAsync());
-            this.ShowPhotoDetailCommand = new Command(async () => await this.ShowPhotoDetailAsync());
+            this.RefreshCommand = new AsyncCommand(async () => await this.GetFavoritePhotosAsync());
+            this.ShowPhotoDetailCommand = new AsyncCommand(async () => await this.ShowPhotoDetailAsync());
         }
 
         public async Task OnAppearing() => await GetFavoritePhotosAsync();
@@ -24,13 +25,13 @@ namespace PhotosXamarin.ViewModels
         {
             try
             {
-                Loading = true;
+                this.Loading = true;
                 var result = await this.photosService.GetFavoritePhotosLocalAsync();
-                lock (Photos)
+                lock (this.Photos)
                 {
-                    Photos.Clear();
+                    this.Photos.Clear();
                     foreach (var photo in result)
-                        Photos.Add(photo);
+                        this.Photos.Add(photo);
                 }
             }
             catch (System.Exception ex)
@@ -39,7 +40,7 @@ namespace PhotosXamarin.ViewModels
             }
             finally
             {
-                Loading = false;
+                this.Loading = false;
             }
         }
 

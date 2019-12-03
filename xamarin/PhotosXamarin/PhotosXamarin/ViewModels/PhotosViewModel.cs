@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Acr.UserDialogs;
+using MvvmHelpers.Commands;
 using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
@@ -10,8 +11,8 @@ namespace PhotosXamarin.ViewModels
 
         public PhotosViewModel()
         {
-            this.RefreshCommand = new Command(async () => await this.GetPhotosAsync());
-            this.ShowPhotoDetailCommand = new Command(async () => await this.ShowPhotoDetailAsync());
+            this.RefreshCommand = new AsyncCommand(async () => await this.GetPhotosAsync());
+            this.ShowPhotoDetailCommand = new AsyncCommand(async () => await this.ShowPhotoDetailAsync());
         }
 
         public override async Task OnAppearing() => await GetPhotosAsync();
@@ -24,11 +25,14 @@ namespace PhotosXamarin.ViewModels
         {
             try
             {
-                Loading = true;
-                Photos.Clear();
+                this.Loading = true;
                 var result = await this.photosService.GetPhotosAsync();
-                foreach (var photo in result)
-                    Photos.Add(photo);
+                lock (this.Photos)
+                {
+                    this.Photos.Clear();
+                    foreach (var photo in result)
+                        this.Photos.Add(photo);
+                }
             }
             catch (System.Exception ex)
             {

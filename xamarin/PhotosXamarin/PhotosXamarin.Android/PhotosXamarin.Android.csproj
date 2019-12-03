@@ -87,11 +87,7 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable\favorite_white.xml">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\camera_white.xml">
+    <AndroidResource Include="Resources\drawable\image_placeholder.jpg">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -99,11 +95,15 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\image_placeholder.jpg">
+    <AndroidResource Include="Resources\drawable\camera_white.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\delete_white.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\favorite_white.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
+using MvvmHelpers.Commands;
 using PhotosXamarin.Models;
 using PhotosXamarin.Services;
-using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
 {
@@ -51,9 +51,9 @@ namespace PhotosXamarin.ViewModels
         {
             this.photosService = new PhotosService();
 
-            this.ClosePhotoDetailCommand = new Command(async () => await this.Navigation.PopModalAsync());
-            this.AddPhotoToFavoriteCommand = new Command(async () => await this.SavePhotoToFavorites());
-            this.RemoveFavoritePhotoCommand = new Command(async () => await this.RemoveFavoritePhoto());
+            this.ClosePhotoDetailCommand = new AsyncCommand(async () => await this.Navigation.PopModalAsync());
+            this.AddPhotoToFavoriteCommand = new AsyncCommand(async () => await this.SavePhotoToFavorites());
+            this.RemoveFavoritePhotoCommand = new AsyncCommand(async () => await this.RemoveFavoritePhoto());
         }
 
         #endregion ViewModel life-cycle
