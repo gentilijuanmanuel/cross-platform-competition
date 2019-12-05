@@ -26,7 +26,7 @@ namespace PhotosXamarin.ViewModels
             }
         }
 
-        private bool loading = true;
+        private bool loading;
         public bool Loading
         {
             get => loading;

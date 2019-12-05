@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
+using PhotosXamarin.Views;
 using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
@@ -11,7 +12,7 @@ namespace PhotosXamarin.ViewModels
 
         public PhotosViewModel()
         {
-            this.RefreshCommand = new AsyncCommand(async () => await this.GetPhotosAsync());
+            this.RefreshCommand = new AsyncCommand(async () => await this.GetPhotosAsync(), (_) => !this.Loading);
             this.ShowPhotoDetailCommand = new AsyncCommand(async () => await this.ShowPhotoDetailAsync());
         }
 
@@ -46,7 +47,7 @@ namespace PhotosXamarin.ViewModels
 
         private async Task ShowPhotoDetailAsync()
         {
-            var navigationPage = new NavigationPage(new Views.PhotoDetailView(SelectedPhoto, false));
+            var navigationPage = new NavigationPage(new PhotoDetailView(SelectedPhoto, false));
             navigationPage.BarBackgroundColor = Color.FromHex("#2A2A2A");
             navigationPage.BarTextColor = Color.FromHex("#FFFFFF");
             await this.Navigation.PushModalAsync(navigationPage);

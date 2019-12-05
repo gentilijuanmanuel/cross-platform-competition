@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
+using PhotosXamarin.Views;
 using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
@@ -11,11 +12,11 @@ namespace PhotosXamarin.ViewModels
 
         public FavoritePhotosViewModel()
         {
-            this.RefreshCommand = new AsyncCommand(async () => await this.GetFavoritePhotosAsync());
+            this.RefreshCommand = new AsyncCommand(async () => await this.GetFavoritePhotosAsync(), (_) => !this.Loading);
             this.ShowPhotoDetailCommand = new AsyncCommand(async () => await this.ShowPhotoDetailAsync());
         }
 
-        public async Task OnAppearing() => await GetFavoritePhotosAsync();
+        public override async Task OnAppearing() => await GetFavoritePhotosAsync();
 
         #endregion ViewModel life-cycle
 
@@ -46,7 +47,7 @@ namespace PhotosXamarin.ViewModels
 
         private async Task ShowPhotoDetailAsync()
         {
-            var navigationPage = new NavigationPage(new Views.PhotoDetailView(SelectedPhoto, true));
+            var navigationPage = new NavigationPage(new PhotoDetailView(SelectedPhoto, true));
             navigationPage.BarBackgroundColor = Color.FromHex("#2A2A2A");
             navigationPage.BarTextColor = Color.FromHex("#FFFFFF");
             await this.Navigation.PushModalAsync(navigationPage);
