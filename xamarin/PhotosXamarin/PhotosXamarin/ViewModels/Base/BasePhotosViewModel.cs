@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using MvvmHelpers;
 using PhotosXamarin.Models;
 using PhotosXamarin.Services;
 
@@ -7,16 +7,10 @@ namespace PhotosXamarin.ViewModels
 {
     public class BasePhotosViewModel : BaseViewModel
     {
-        #region Private properties
-
-        public readonly IPhotosService photosService;
-
-        #endregion
-
         #region Public properties
 
-        private ObservableCollection<Photo> photos = new ObservableCollection<Photo>();
-        public ObservableCollection<Photo> Photos
+        private ObservableRangeCollection<Photo> photos = new ObservableRangeCollection<Photo>();
+        public ObservableRangeCollection<Photo> Photos
         {
             get => photos;
             set
@@ -53,9 +47,8 @@ namespace PhotosXamarin.ViewModels
 
         #endregion Public properties
 
-        public BasePhotosViewModel()
+        public BasePhotosViewModel(IPhotosService photosService, INavigationService navigationService) : base(photosService, navigationService)
         {
-            this.photosService = new PhotosService();
         }
     }
 }

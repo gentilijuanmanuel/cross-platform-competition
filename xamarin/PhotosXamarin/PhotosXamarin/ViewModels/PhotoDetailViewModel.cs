@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
@@ -9,12 +10,6 @@ namespace PhotosXamarin.ViewModels
 {
     public class PhotoDetailViewModel : BaseViewModel
     {
-        #region Private properties
-
-        private readonly IPhotosService photosService;
-
-        #endregion
-
         #region Public properties
 
         Photo selectedPhoto;
@@ -47,13 +42,24 @@ namespace PhotosXamarin.ViewModels
 
         #region ViewModel life-cycle
 
-        public PhotoDetailViewModel()
+        public PhotoDetailViewModel(IPhotosService photosService, INavigationService navigationService) : base(photosService, navigationService)
         {
-            this.photosService = new PhotosService();
-
-            this.ClosePhotoDetailCommand = new AsyncCommand(async () => await this.Navigation.PopModalAsync());
+            this.ClosePhotoDetailCommand = new AsyncCommand(async () => await this.navigationService.CloseModalAsync());
             this.AddPhotoToFavoriteCommand = new AsyncCommand(async () => await this.SavePhotoToFavorites());
             this.RemoveFavoritePhotoCommand = new AsyncCommand(async () => await this.RemoveFavoritePhoto());
+        }
+
+        public override Task InitializeAsync(object navigationData)
+        {
+            UserDialogs.Instance.ShowLoading();
+
+            var parameter = (PhotoDetailNavParameter)navigationData;
+
+            SelectedPhoto = parameter.SelectedPhoto;
+            IsFavoritePhoto = parameter.IsFavoritePhoto;
+            UserDialogs.Instance.HideLoading();
+
+            return base.InitializeAsync(navigationData);
         }
 
         #endregion ViewModel life-cycle
@@ -66,9 +72,9 @@ namespace PhotosXamarin.ViewModels
             {
                 await this.photosService.SaveFavoritePhotoLocalAsync(SelectedPhoto);
                 UserDialogs.Instance.Toast("Saved to favorites!");
-                await this.Navigation.PopModalAsync();
+                await this.navigationService.CloseModalAsync();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.Toast("Cannot save photo. Please try again.");
             }
@@ -80,9 +86,9 @@ namespace PhotosXamarin.ViewModels
             {
                 await this.photosService.DeleteFavoritePhotoLocalAsync(SelectedPhoto);
                 UserDialogs.Instance.Toast("Deleted photo!");
-                await this.Navigation.PopModalAsync();
+                await this.navigationService.CloseModalAsync();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.Toast("Cannot delete favorite photo. Please try again.");
             }

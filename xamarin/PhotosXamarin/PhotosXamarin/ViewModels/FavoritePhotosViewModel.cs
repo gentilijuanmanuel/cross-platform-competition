@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
-using PhotosXamarin.Views;
-using Xamarin.Forms;
+using PhotosXamarin.Services;
 
 namespace PhotosXamarin.ViewModels
 {
@@ -10,7 +10,7 @@ namespace PhotosXamarin.ViewModels
     {
         #region ViewModel life-cycle
 
-        public FavoritePhotosViewModel()
+        public FavoritePhotosViewModel(IPhotosService photosService, INavigationService navigationService) : base(photosService, navigationService)
         {
             this.RefreshCommand = new AsyncCommand(async () => await this.GetFavoritePhotosAsync(), (_) => !this.Loading);
             this.ShowPhotoDetailCommand = new AsyncCommand(async () => await this.ShowPhotoDetailAsync());
@@ -28,14 +28,9 @@ namespace PhotosXamarin.ViewModels
             {
                 this.Loading = true;
                 var result = await this.photosService.GetFavoritePhotosLocalAsync();
-                lock (this.Photos)
-                {
-                    this.Photos.Clear();
-                    foreach (var photo in result)
-                        this.Photos.Add(photo);
-                }
+                this.Photos.ReplaceRange(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.Toast("Cannot get favorite photos. Please try again.");
             }
@@ -47,10 +42,13 @@ namespace PhotosXamarin.ViewModels
 
         private async Task ShowPhotoDetailAsync()
         {
-            var navigationPage = new NavigationPage(new PhotoDetailView(SelectedPhoto, true));
-            navigationPage.BarBackgroundColor = Color.FromHex("#2A2A2A");
-            navigationPage.BarTextColor = Color.FromHex("#FFFFFF");
-            await this.Navigation.PushModalAsync(navigationPage);
+            var navParameter = new PhotoDetailNavParameter
+            {
+                SelectedPhoto = SelectedPhoto,
+                IsFavoritePhoto = true
+            };
+
+            await this.navigationService.NavigateToModalAsync<PhotoDetailViewModel>(navParameter);
         }
 
         #endregion Private methods

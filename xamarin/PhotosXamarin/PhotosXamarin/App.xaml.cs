@@ -14,9 +14,7 @@ namespace PhotosXamarin
             get
             {
                 if (database == null)
-                {
                     database = new PhotosDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PhotosDatabase.db3"));
-                }   
                 return database;
             }
         }

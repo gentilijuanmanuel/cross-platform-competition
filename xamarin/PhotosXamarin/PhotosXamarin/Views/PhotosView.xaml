@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     BackgroundColor="#303030"
+    BindingContext="{Binding PhotosViewModel, Source={StaticResource Locator}}"
     x:Class="PhotosXamarin.Views.PhotosView">
     <ContentPage.Content>
         <RefreshView
