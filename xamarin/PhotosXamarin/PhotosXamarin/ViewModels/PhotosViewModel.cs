@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
-using PhotosXamarin.Models;
+using PhotosXamarin.NavParameters;
 using PhotosXamarin.Services;
 
 namespace PhotosXamarin.ViewModels
@@ -53,11 +53,5 @@ namespace PhotosXamarin.ViewModels
         }
 
         #endregion Private methods
-    }
-
-    public class PhotoDetailNavParameter
-    {
-        public Photo SelectedPhoto { get; set; }
-        public bool IsFavoritePhoto { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
 using PhotosXamarin.Models;
+using PhotosXamarin.NavParameters;
 using PhotosXamarin.Services;
 
 namespace PhotosXamarin.ViewModels

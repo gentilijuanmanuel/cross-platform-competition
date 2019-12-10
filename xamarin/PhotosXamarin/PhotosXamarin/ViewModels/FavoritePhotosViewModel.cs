@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmHelpers.Commands;
+using PhotosXamarin.NavParameters;
 using PhotosXamarin.Services;
 
 namespace PhotosXamarin.ViewModels
