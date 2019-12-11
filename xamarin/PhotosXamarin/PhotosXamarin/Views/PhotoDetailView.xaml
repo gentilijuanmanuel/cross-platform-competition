@@ -25,6 +25,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -82,6 +83,20 @@
                         Source="delete_white"
                         IsVisible="{Binding IsFavoritePhoto}"
                         Command="{Binding RemoveFavoritePhotoCommand}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        TextColor="White"
+                        IsVisible="{Binding IsFavoritePhoto}"
+                        Text="{Binding SelectedPhoto.LocalDescription}" />
+                    <Entry
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        Placeholder="Enter a description..."
+                        IsVisible="{Binding IsFavoritePhoto, Converter={StaticResource InvertedBoolConverter}}"
+                        Text="{Binding SelectedPhoto.LocalDescription}" />
                 </Grid>
             </StackLayout>
         </ScrollView>

@@ -80,5 +80,11 @@ namespace PhotosXamarin.Services
             Page page = Activator.CreateInstance(pageType) as Page;
             return page;
         }
+
+        public async Task DisplayAlertAsync(string title, string message, string cancelOption)
+        {
+            var mainPage = Application.Current.MainPage;
+            await mainPage.DisplayAlert(title, message, cancelOption);
+        }
     }
 }

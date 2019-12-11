@@ -35,6 +35,9 @@ namespace PhotosXamarin.Models
         [JsonIgnore]
         public string UserFirstName { get; set; }
 
+        [JsonIgnore]
+        public string LocalDescription { get; set; }
+
         public event NotifyCollectionChangedEventHandler CollectionChanged;
     }
 }

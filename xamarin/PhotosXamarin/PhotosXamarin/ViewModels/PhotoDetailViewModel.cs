@@ -71,6 +71,12 @@ namespace PhotosXamarin.ViewModels
         {
             try
             {
+                if (string.IsNullOrEmpty(SelectedPhoto.LocalDescription))
+                {
+                    await this.navigationService.DisplayAlertAsync("Error", "You need to type some description", "Ok");
+                    return;
+                }
+
                 await this.photosService.SaveFavoritePhotoLocalAsync(SelectedPhoto);
                 UserDialogs.Instance.Toast("Saved to favorites!");
                 await this.navigationService.CloseModalAsync();

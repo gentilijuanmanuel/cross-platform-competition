@@ -10,5 +10,6 @@ namespace PhotosXamarin.Services
         Task NavigateToModalAsync<TViewModel>() where TViewModel : BaseViewModel;
         Task NavigateToModalAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel;
         Task CloseModalAsync();
+        Task DisplayAlertAsync(string title, string message, string cancelOption);
     }
 }

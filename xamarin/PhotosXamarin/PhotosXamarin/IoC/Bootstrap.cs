@@ -13,8 +13,8 @@ namespace PhotosXamarin.IoC
             var builder = new ContainerBuilder();
 
             builder.RegisterType<PhotosViewModel>().SingleInstance();
-            builder.RegisterType<PhotoDetailViewModel>().SingleInstance();
             builder.RegisterType<FavoritePhotosViewModel>().SingleInstance();
+            builder.RegisterType<PhotoDetailViewModel>().AsSelf();
 
             builder.RegisterType<PhotosService>().As<IPhotosService>().SingleInstance();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
