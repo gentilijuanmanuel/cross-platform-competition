@@ -73,7 +73,7 @@ namespace PhotosXamarin.ViewModels
             {
                 if (string.IsNullOrEmpty(SelectedPhoto.LocalDescription))
                 {
-                    await this.navigationService.DisplayAlertAsync("Error", "You need to type some description", "Ok");
+                    await this.navigationService.DisplayAlertAsync("Ups!", "You need to type some description", "Ok");
                     return;
                 }
 
