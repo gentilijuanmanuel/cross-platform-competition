@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PhotosXamarin.DTO;
 using PhotosXamarin.Models;
 
 namespace PhotosXamarin.Services
 {
     public interface IPhotosService
     {
-        Task<IEnumerable<Photo>> GetPhotosAsync(string url = null);
+        Task<PhotosDTO> GetPhotosAsync(string url = null);
 
         Task<List<Photo>> GetFavoritePhotosLocalAsync();
 

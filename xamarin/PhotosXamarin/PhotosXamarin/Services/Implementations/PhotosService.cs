@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using PhotosXamarin.DTO;
 using PhotosXamarin.Helpers;
 using PhotosXamarin.Models;
 using PhotosXamarin.Rest;
@@ -11,18 +12,18 @@ namespace PhotosXamarin.Services
     {
         private readonly IRestClient restClient;
 
-        private const string URL_SUFFIX = "photos";
+        private const string URL_SUFFIX = "search/photos?query=star%20wars";
 
         public PhotosService()
         {
             this.restClient = new RestClient();
         }
 
-        public Task<IEnumerable<Photo>> GetPhotosAsync(string url = null)
+        public Task<PhotosDTO> GetPhotosAsync(string url = null)
         {
-            var photosTask = this.restClient.MakeApiCall<IEnumerable<Photo>>($"{Constants.BASE_URL}{URL_SUFFIX}", HttpMethod.Get);
+            var photosTask = this.restClient.MakeApiCall<PhotosDTO>($"{Constants.BASE_URL}{URL_SUFFIX}", HttpMethod.Get);
 
-            foreach (var photo in photosTask.Result)
+            foreach (var photo in photosTask.Result.Results)
             {
                 photo.UserFirstName = photo.User.FirstName;
                 photo.Path = photo.Urls.Regular;

@@ -29,7 +29,7 @@ namespace PhotosXamarin.ViewModels
             {
                 this.Loading = true;
                 var result = await this.photosService.GetPhotosAsync();
-                this.Photos.ReplaceRange(result);
+                this.Photos.ReplaceRange(result.Results);
             }
             catch (Exception ex)
             {
