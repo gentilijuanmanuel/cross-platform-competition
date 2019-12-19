@@ -10,7 +10,7 @@
             IconImageSource="camera_white"
             Title="Photos" />
         <views:FavoritePhotosView
-            IconImageSource="favorite_white"
+            IconImageSource="bookmark_white"
             Title="Favorites" />
     </TabBar>
 </Shell>

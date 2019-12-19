@@ -30,7 +30,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="40">
+                        <StackLayout Padding="10">
                             <Frame
                                 CornerRadius="20" 
                                 Padding="0"

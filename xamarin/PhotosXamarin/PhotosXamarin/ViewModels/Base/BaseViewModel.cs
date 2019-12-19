@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using PhotosXamarin.Services;
-using Xamarin.Forms;
 
 namespace PhotosXamarin.ViewModels
 {
@@ -11,8 +10,6 @@ namespace PhotosXamarin.ViewModels
         public readonly IPhotosService photosService;
 
         public readonly INavigationService navigationService;
-
-        public INavigation Navigation { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
