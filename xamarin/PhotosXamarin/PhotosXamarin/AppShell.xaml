@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:PhotosXamarin.Views"
+       x:Class="PhotosXamarin.AppShell"
+       BackgroundColor="#2A2A2A"
+       TitleColor="White">
+    <TabBar>
+        <views:PhotosView
+            IconImageSource="camera_white"
+            Title="Photos" />
+        <views:FavoritePhotosView
+            IconImageSource="bookmark_white"
+            Title="Favorites" />
+    </TabBar>
+</Shell>

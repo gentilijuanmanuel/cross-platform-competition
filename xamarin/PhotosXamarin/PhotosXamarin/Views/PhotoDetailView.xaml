@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    BackgroundColor="#2A2A2A"
+    Title="{Binding SelectedPhoto.UserFirstName}"
+    BindingContext="{Binding PhotoDetailViewModel, Source={StaticResource Locator}}"
+    x:Class="PhotosXamarin.Views.PhotoDetailView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Close"
+            Command="{Binding ClosePhotoDetailCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#303030">
+                <Grid
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Padding="40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout
+                        Grid.ColumnSpan="2">
+                        <Frame
+                            Grid.ColumnSpan="2"
+                            CornerRadius="20"
+                            Padding="0"
+                            IsClippedToBounds="True">
+                            <ffimageloading:CachedImage
+                                LoadingPlaceholder="image_placeholder.jpg"
+			                    Source="{Binding SelectedPhoto.Path}">
+		                    </ffimageloading:CachedImage>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="1"
+                        Orientation="Horizontal"
+                        Margin="20">
+                        <Label
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            FontSize="15"
+                            TextColor="White"
+                            Text="{Binding SelectedPhoto.Likes}" />
+                        <Image
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            HeightRequest="17"
+                            WidthRequest="17"
+                            Source="favorite_white" />
+                    </StackLayout>
+                    <ImageButton
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="20"
+                        VerticalOptions="Start"
+                        HorizontalOptions="End"
+                        HeightRequest="17"
+                        WidthRequest="17"
+                        Source="bookmark_white"
+                        IsVisible="{Binding IsFavoritePhoto, Converter={StaticResource InvertedBoolConverter}}"
+                        Command="{Binding AddPhotoToFavoriteCommand}" />
+                    <ImageButton
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="20"
+                        VerticalOptions="Start"
+                        HorizontalOptions="End"
+                        HeightRequest="17"
+                        WidthRequest="17"
+                        Source="delete_white"
+                        IsVisible="{Binding IsFavoritePhoto}"
+                        Command="{Binding RemoveFavoritePhotoCommand}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        TextColor="White"
+                        IsVisible="{Binding IsFavoritePhoto}"
+                        Text="{Binding SelectedPhoto.LocalDescription}" />
+                    <Entry
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        Placeholder="Enter a description..."
+                        IsVisible="{Binding IsFavoritePhoto, Converter={StaticResource InvertedBoolConverter}}"
+                        Text="{Binding SelectedPhoto.LocalDescription}" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
