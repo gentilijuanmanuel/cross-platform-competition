@@ -1,10 +1,9 @@
-﻿using System.Collections.Specialized;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SQLite;
 
 namespace PhotosXamarin.Models
 {
-    public class Photo : INotifyCollectionChanged
+    public class Photo
     {
         [JsonProperty("id")]
         [PrimaryKey]
@@ -37,7 +36,5 @@ namespace PhotosXamarin.Models
 
         [JsonIgnore]
         public string LocalDescription { get; set; }
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
     }
 }
