@@ -15,7 +15,7 @@
     "@types/unsplash-js": "^5.0.0",
     "native-base": "^2.13.8",
     "react": "16.9.0",
-    "react-native": "0.61.4",
+    "react-native": "0.62.3",
     "react-native-gesture-handler": "^1.5.2",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^1.0.0-alpha.23",
